@@ -14,30 +14,25 @@ namespace log
         template <typename... Args>
         inline void info(format_string<Args...> fmt, Args&&... args)
         {
-            instance()->info(fmt, std::forward<Args>(args)...);
+            m_logger->info(fmt, std::forward<Args>(args)...);
         }
 
         template <typename... Args>
         inline void error(format_string<Args...> fmt, Args&&... args)
         {
-            instance()->error(fmt, std::forward<Args>(args)...);
+            m_logger->error(fmt, std::forward<Args>(args)...);
         }
 
         template <typename... Args>
         inline void warn(format_string<Args...> fmt, Args&&... args)
         {
-            instance()->warn(fmt, std::forward<Args>(args)...);
+            m_logger->warn(fmt, std::forward<Args>(args)...);
         }
 
         template <typename... Args>
         inline void critical(format_string<Args...> fmt, Args&&... args)
         {
-            instance()->critical(fmt, std::forward<Args>(args)...);
-        }
-
-        spdlog::logger* operator->()
-        {
-            return this->m_logger;
+            m_logger->critical(fmt, std::forward<Args>(args)...);
         }
 
         static Backend& instance()

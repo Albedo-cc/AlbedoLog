@@ -4,6 +4,8 @@
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/basic_file_sink.h>
 
+#include <filesystem>
+
 namespace Albedo {
 namespace log
 {
@@ -16,8 +18,8 @@ namespace log
 #else
         console_sink->set_level(spdlog::level::warn);
 #endif
-
-        auto file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>("/home/ljyc/code/project/Albedo-Server/debug/logs/log_trace.txt", true);
+        auto log_file = std::filesystem::current_path().append("trace.log").string();
+        auto file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(log_file, true);
         file_sink->set_level(spdlog::level::trace);
 
         m_logger = new spdlog::logger("system", { console_sink, file_sink });
