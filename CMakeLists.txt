@@ -12,7 +12,7 @@ set(CMAKE_CXX_EXTENSIONS OFF) # Vendor-specific Extensions
 option(backend_spdlog "Set the spdlog as the backend of AlbedoLog" ON)
 
 add_subdirectory(include)
-add_library(Albedo::log ALIAS AlbedoLog)
+add_library(Albedo::log ALIAS ${PROJECT_NAME})
 
 add_executable(test main.cc)
 target_link_libraries(test PRIVATE Albedo::log)
