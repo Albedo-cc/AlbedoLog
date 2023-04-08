@@ -25,6 +25,12 @@ namespace log
     }
 
     template <typename... Args>
+    inline void debug(format_string<Args...> fmt, Args&&... args)
+    {
+        Backend::instance().debug(fmt, std::forward<Args>(args)...);
+    }
+
+    template <typename... Args>
     inline void critical(format_string<Args...> fmt, Args&&... args)
     {
         Backend::instance().critical(fmt, std::forward<Args>(args)...);

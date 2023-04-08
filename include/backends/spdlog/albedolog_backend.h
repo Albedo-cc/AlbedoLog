@@ -30,6 +30,12 @@ namespace log
         }
 
         template <typename... Args>
+        inline void debug(format_string<Args...> fmt, Args&&... args)
+        {
+            m_logger->debug(fmt, std::forward<Args>(args)...);
+        }
+
+        template <typename... Args>
         inline void critical(format_string<Args...> fmt, Args&&... args)
         {
             m_logger->critical(fmt, std::forward<Args>(args)...);
